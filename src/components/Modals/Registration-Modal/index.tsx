@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import { ModalProps } from "./interface";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 const RegistrationModal = ({
   showModal,

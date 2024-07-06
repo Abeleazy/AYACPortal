@@ -14,15 +14,11 @@ const Home = () => {
     setShowModal(true);
   };
 
-  const handleRemoveUser = (index: number) => {
-    const updatedForms = [...formList];
-    updatedForms.splice(index, 1);
-    setFormList(updatedForms);
-  };
+
 
   const handleSubmitForm = async () => {
     setIsLoading(false);
-    
+
     const { data } = await axios.post(
       "https://endpoint.ayac2024.org.ng:6443/api/member/create-members",
       formList
