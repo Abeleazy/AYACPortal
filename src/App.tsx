@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
@@ -9,8 +6,6 @@ import AdminLayout from "./pages/Admin/Layout";
 import Dashboard from "./pages/Admin/Dashboard";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const router = createBrowserRouter([
     {
       path: "/",
