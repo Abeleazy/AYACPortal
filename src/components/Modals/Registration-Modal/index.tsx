@@ -7,6 +7,8 @@ const RegistrationModal = ({
   showModal,
   data,
   updateData,
+  editId,
+  editData,
   closeModal,
 }: ModalProps) => {
   const [state, setState] = useState<any[]>([]);
@@ -14,18 +16,28 @@ const RegistrationModal = ({
   const [country, setCountry] = useState<any[]>([]);
   const formik = useFormik({
     initialValues: {
-      fullNames: "",
-      emailAddress: "",
-      phoneNumber: "",
-      stateId: "",
-      stateName: "",
-      station: "",
+      fullNames: editId ? editData.fullNames : "",
+      emailAddress: editId ? editData.emailAddress : "",
+      phoneNumber: editId ? editData.phoneNumber : "",
+      stateId: editId ? editData.stateId : "",
+      stateName: editId ? editData.stateName : "",
+      station: editId ? editData.station : "",
     },
     onSubmit: async (values) => {
-      console.log(values);
-      updateData([...data, values]);
-      setCountryId(0);
-      closeModal(false);
+      console.log(data[editId]);
+      if (editId !== null) {
+        console.log("edit");
+        console.log(values);
+        data[editId] = values;
+        updateData(data);
+        setCountryId(0);
+        closeModal(false);
+      } else {
+        console.log(values);
+        updateData([...data, values]);
+        setCountryId(0);
+        closeModal(false);
+      }
     },
   });
 
@@ -62,7 +74,7 @@ const RegistrationModal = ({
           className="absolute top-0 left-0 h-full w-full bg-[#00000090] z-[999] cursor-pointer"
           onClick={() => closeModal(false)}
         ></div>
-        <div className="absolute w-1/2 z-[999999999] ">
+        <div className="absolute xl:w-1/2 md:w-1/2 w-[90%] overflow-y-scroll z-[999999999] ">
           <div className=" px-8 py-5  bg-[#FFF]">
             <div className="grid gap-4">
               <div className="w-full flex flex-col gap-2">
@@ -73,12 +85,13 @@ const RegistrationModal = ({
                   type="text"
                   name="fullName"
                   placeholder="Full Name"
+                  defaultValue={formik.values.fullNames}
                   id="fullName"
                   onChange={formik.handleChange("fullNames")}
                   className="h-[4rem] bg-[#F5F5F5] px-4 rounded-[10px]"
                 />
               </div>
-              <div className="flex gap-4">
+              <div className="flex xl:flex-row md:flex-row flex-col gap-4">
                 <div className="w-full flex flex-col gap-2">
                   <label
                     htmlFor="phoneNumber"
@@ -89,6 +102,7 @@ const RegistrationModal = ({
                   <input
                     type="text"
                     name="tel"
+                    defaultValue={formik.values.phoneNumber}
                     max={11}
                     maxLength={11}
                     placeholder="Phone number"
@@ -104,6 +118,7 @@ const RegistrationModal = ({
                   <input
                     type="email"
                     name="email"
+                    defaultValue={formik.values.emailAddress}
                     placeholder="Email"
                     onChange={formik.handleChange("emailAddress")}
                     id="email"
@@ -111,7 +126,7 @@ const RegistrationModal = ({
                   />
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex xl:flex-row md:flex-row flex-col gap-4">
                 <div className="w-full flex flex-col gap-2">
                   <label htmlFor="state" className="font-[400] text-[1.2rem]">
                     Country
@@ -163,6 +178,7 @@ const RegistrationModal = ({
                 <input
                   type="station"
                   name="station"
+                  defaultValue={formik.values.station}
                   placeholder="Station (Church Branch)"
                   id="station"
                   onChange={formik.handleChange("station")}
@@ -174,7 +190,7 @@ const RegistrationModal = ({
                   onClick={() => formik.handleSubmit()}
                   className="w-full h-full bg-[#444] text-[1.2rem] text-[#FFF] rounded-[10px]"
                 >
-                  Add Member
+                  Register Member
                 </button>
               </div>
             </div>

@@ -8,13 +8,13 @@ const Home = () => {
   const [showSuccess, setshowSuccess] = useState<boolean>(false);
   const [formList, setFormList] = useState<any[]>([]);
   const [batchNumber, setBatchNuber] = useState<string>("");
+  const [editId, setEditId] = useState<any>(null);
+  const [editData, setEditData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleAddUser = () => {
     setShowModal(true);
   };
-
-
 
   const handleSubmitForm = async () => {
     setIsLoading(false);
@@ -34,6 +34,14 @@ const Home = () => {
     }
   };
 
+  const handleEditUser = (index: any) => {
+    const dataToEdit = formList[index];
+    setEditId(index);
+    setEditData(dataToEdit);
+    setShowModal(true);
+  };
+  const handleRemoveUser = (index: any) => {};
+
   useEffect(() => {}, [formList]);
 
   return (
@@ -42,10 +50,10 @@ const Home = () => {
         <div className="2xl:w-2/3 xl:w-2/3 lg:w-2/3 md:w-2/3 w-[80%] h-full flex justify-center">
           <div className="w-full">
             <div className="2xl:h-[10rem] xl:h-[10rem] lg:h-[8rem] md:h-[8rem] w-full flex flex-col items-center justify-center bg-[#F5F5F5] mb-2">
-              <h2 className="text-[3rem] text-center font-[700]">
-                Winners Camp Form
+              <h2 className="uppercase text-[3rem] text-center font-[700]">
+                AYAC 2024 Registration
               </h2>
-              <div className="flex gap-3">
+              <div className="flex xl:flex-row md:flex-row flex-col gap-3">
                 <button className="px-6 py-3 bg-[#141821] text-[#FFF] rounded-[10px] font-[400]">
                   Download Template
                 </button>
@@ -140,7 +148,7 @@ const Home = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {formList.map((item) => (
+                    {formList.map((item, index) => (
                       <tr className="bg-white  hover:bg-gray-50">
                         <td className="w-4 p-4">
                           <div className="flex items-center">
@@ -168,18 +176,18 @@ const Home = () => {
                         <td className="px-6 py-4">{item.stateName}</td>
                         <td className="px-6 py-4">{item.station}</td>
                         <td className="px-6 py-4 flex gap-3">
-                          <a
-                            href="#"
+                          <button
+                            onClick={() => handleEditUser(index)}
                             className="font-medium text-blue-600 hover:underline"
                           >
                             Edit
-                          </a>
-                          <a
-                            href="#"
+                          </button>
+                          <button
+                            onClick={() => handleRemoveUser(index)}
                             className="font-medium text-blue-600 hover:underline"
                           >
                             Remove
-                          </a>
+                          </button>
                         </td>
                       </tr>
                     ))}
@@ -202,6 +210,8 @@ const Home = () => {
       <RegistrationModal
         showModal={showModal}
         closeModal={setShowModal}
+        editId={editId}
+        editData={editData}
         updateData={setFormList}
         data={formList}
       />
