@@ -40,7 +40,7 @@ const Home = () => {
     setEditData(dataToEdit);
     setShowModal(true);
   };
-  const handleRemoveUser = (index: any) => {};
+  // const handleRemoveUser = (index: any) => {};
 
   useEffect(() => {}, [formList]);
 
