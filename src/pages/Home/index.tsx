@@ -183,7 +183,7 @@ const Home = () => {
                             Edit
                           </button>
                           <button
-                            onClick={() => handleRemoveUser(index)}
+                            // onClick={() => handleRemoveUser(index)}
                             className="font-medium text-blue-600 hover:underline"
                           >
                             Remove
