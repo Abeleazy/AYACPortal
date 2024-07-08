@@ -40,7 +40,13 @@ const Home = () => {
     setEditData(dataToEdit);
     setShowModal(true);
   };
-  // const handleRemoveUser = (index: any) => {};
+  const handleRemoveUser = (index: any) => {
+    console.log(index);
+    formList.splice(index, 1);
+
+    console.log(formList);
+    setFormList([...formList]);
+  };
 
   useEffect(() => {}, [formList]);
 
@@ -183,7 +189,7 @@ const Home = () => {
                             Edit
                           </button>
                           <button
-                            // onClick={() => handleRemoveUser(index)}
+                            onClick={() => handleRemoveUser(index)}
                             className="font-medium text-blue-600 hover:underline"
                           >
                             Remove
@@ -211,6 +217,8 @@ const Home = () => {
         showModal={showModal}
         closeModal={setShowModal}
         editId={editId}
+        clearEditData={setEditData}
+        clearEditId={setEditId}
         editData={editData}
         updateData={setFormList}
         data={formList}

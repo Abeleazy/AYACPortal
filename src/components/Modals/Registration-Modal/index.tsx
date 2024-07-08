@@ -7,13 +7,16 @@ const RegistrationModal = ({
   showModal,
   data,
   updateData,
-  editId,
-  editData,
+  editId = null,
+  clearEditId,
+  editData = null,
+  clearEditData,
   closeModal,
 }: ModalProps) => {
   const [state, setState] = useState<any[]>([]);
   const [countryId, setCountryId] = useState<number>();
   const [country, setCountry] = useState<any[]>([]);
+
   const formik = useFormik({
     initialValues: {
       fullNames: editId ? editData.fullNames : "",
@@ -35,11 +38,19 @@ const RegistrationModal = ({
       } else {
         console.log(values);
         updateData([...data, values]);
+        formik.resetForm();
         setCountryId(0);
         closeModal(false);
       }
     },
   });
+
+  const handleCloseModal = () => {
+    setCountryId(0);
+    closeModal(false);
+    clearEditData(null);
+    clearEditId(null);
+  };
 
   const getState = async () => {
     const { data } = await axios.post(
@@ -67,12 +78,22 @@ const RegistrationModal = ({
   useEffect(() => {
     getState();
   }, [countryId]);
+
+  useEffect(() => {
+    formik.setFieldValue("fullNames", editData?.fullNames);
+    formik.setFieldValue("stateId", editData?.stateId);
+    formik.setFieldValue("emailAddress", editData?.emailAddress);
+    formik.setFieldValue("phoneNumber", editData?.phoneNumber);
+    formik.setFieldValue("station", editData?.station);
+    formik.setFieldValue("stateName", editData?.stateName);
+  }, [editData, editId]);
+
   if (showModal) {
     return (
       <div className="fixed top-0 left-0 h-screen w-screen z-[99] flex items-center justify-center">
         <div
           className="absolute top-0 left-0 h-full w-full bg-[#00000090] z-[999] cursor-pointer"
-          onClick={() => closeModal(false)}
+          onClick={() => handleCloseModal()}
         ></div>
         <div className="absolute xl:w-1/2 md:w-1/2 w-[90%] overflow-y-scroll z-[999999999] ">
           <div className=" px-8 py-5  bg-[#FFF]">
