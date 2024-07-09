@@ -13,21 +13,38 @@ const AdminLayout = () => {
           <h2 className="text-[#FFF]">Logout</h2>
         </div>
       </div>
-      <div>
-        <div>
-          <ul>
-            <li>
-              <a href="">Dashboard</a>
-            </li>
-            <li>
-              <a href="">Registration</a>
-            </li>
-            <li>
-              <a href="">User</a>
-            </li>
-          </ul>
+      <div className="flex w-full h-[calc(100vh_-_5rem)]">
+        <div className="bg-[#444] w-2/12 h-full">
+          <div className="w-full h-full">
+            <ul className="flex flex-col gap-5 w-full h-full">
+              <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
+                <a
+                  href=""
+                  className="text-[1.2rem] font-[400] text-[#9C9C9C] hover:font-[500] w-full cursor-pointer"
+                >
+                  Dashboard
+                </a>
+              </li>
+              <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
+                <a
+                  href=""
+                  className="text-[1.2rem] font-[400] text-[#9C9C9C] hover:font-[500] w-full cursor-pointer"
+                >
+                  Attendees
+                </a>
+              </li>
+              <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
+                <a
+                  href=""
+                  className="text-[1.2rem] font-[400] text-[#9C9C9C] hover:font-[500] w-full cursor-pointer"
+                >
+                  Finance
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div>
+        <div className="w-10/12 h-full overflow-y-scroll">
           <Outlet />
         </div>
       </div>

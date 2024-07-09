@@ -25,7 +25,7 @@ function App() {
       Component: AdminLayout,
       children: [
         {
-          path: "Dashboard",
+          path: "dashboard",
           element: <Dashboard />,
         },
       ],
