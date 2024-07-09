@@ -7,7 +7,7 @@ const Pagination = ({
   currentPage,
   totalItems,
 }: PaginationProps) => {
-  const pages = Array.from({ length: totalItems }, (_, i) => i + 1);
+  // const pages = Array.from({ length: totalItems }, (_, i) => i + 1);
 
   const handlePageClick = (pageNumber: number) => {
     setCurrentPage(pageNumber);

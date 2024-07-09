@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 const AdminLayout = () => {
   return (
@@ -18,20 +18,20 @@ const AdminLayout = () => {
           <div className="w-full h-full">
             <ul className="flex flex-col gap-5 w-full h-full">
               <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
-                <a
-                  href=""
+                <Link
+                  to="/admin/dashboard"
                   className="text-[1.2rem] font-[400] text-[#9C9C9C] hover:font-[500] w-full cursor-pointer"
                 >
                   Dashboard
-                </a>
+                </Link>
               </li>
               <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
-                <a
-                  href=""
+                <Link
+                  to="/admin/attendees"
                   className="text-[1.2rem] font-[400] text-[#9C9C9C] hover:font-[500] w-full cursor-pointer"
                 >
                   Attendees
-                </a>
+                </Link>
               </li>
               <li className="px-4 py-3 flex hover:bg-[#FFFFFF30] w-full">
                 <a

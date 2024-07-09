@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import AdminLogin from "./pages/Admin/Login";
 import AdminLayout from "./pages/Admin/Layout";
 import Dashboard from "./pages/Admin/Dashboard";
+import Attendee from "./pages/Admin/Attendee";
 
 function App() {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ function App() {
         {
           path: "dashboard",
           element: <Dashboard />,
+        },
+        {
+          path: "attendees",
+          element: <Attendee />,
         },
       ],
     },
